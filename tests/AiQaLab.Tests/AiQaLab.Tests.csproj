@@ -15,6 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\AiQaLab.AI\AiQaLab.AI.csproj" />
+    <ProjectReference Include="..\..\src\AiQaLab.Core\AiQaLab.Core.csproj" />
+    <ProjectReference Include="..\..\src\AiQaLab.DemoApp\AiQALab.DemoApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
