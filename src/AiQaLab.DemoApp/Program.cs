@@ -1,13 +1,18 @@
+using AiQALab.DemoApp.Services;
+using AiQALab.DemoApp.Services.Interfaces;
+
 namespace AiQALab.DemoApp
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             var app = builder.Build();
 
