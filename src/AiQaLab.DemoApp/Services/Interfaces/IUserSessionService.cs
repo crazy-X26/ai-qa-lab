@@ -1,10 +1,12 @@
-﻿namespace AiQALab.DemoApp.Services.Interfaces
+﻿using AiQALab.Core.Models;
+
+namespace AiQALab.DemoApp.Services.Interfaces
 {
     public interface IUserSessionService
     {
         bool IsAuthenticated();
 
-        void SetCurrentUserSession(string userName, string email);
+        void SignIn(AuthenticationResult authenticationResult);
 
         void SignOut();
 

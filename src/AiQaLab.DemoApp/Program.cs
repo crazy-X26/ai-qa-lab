@@ -12,7 +12,10 @@ namespace AiQALab.DemoApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSession();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
             var app = builder.Build();
 
@@ -27,6 +30,8 @@ namespace AiQALab.DemoApp
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapStaticAssets();
