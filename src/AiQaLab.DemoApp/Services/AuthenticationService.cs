@@ -1,7 +1,7 @@
-﻿using AiQALab.DemoApp.Services.Interfaces;
-using AiQALab.Core.Models;
+﻿using AiQaLab.DemoApp.Services.Interfaces;
+using AiQaLab.Core.Models;
 
-namespace AiQALab.DemoApp.Services
+namespace AiQaLab.DemoApp.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AiQALab.DemoApp.Views.Accounts
+namespace AiQaLab.DemoApp.Views.Accounts
 {
     public class Login : PageModel
     {

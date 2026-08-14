@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AiQALab.DemoApp.ViewModels
+namespace AiQaLab.DemoApp.ViewModels
 {
     public class LoginViewModel
     {

@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AiQaLab.DemoApp\AiQALab.DemoApp.csproj" />
+    <ProjectReference Include="..\..\src\AiQaLab.DemoApp\AiQaLab.DemoApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,8 @@
-﻿using AiQALab.DemoApp.Services.Interfaces;
-using AiQALab.DemoApp.ViewModels;
+﻿using AiQaLab.DemoApp.Services.Interfaces;
+using AiQaLab.DemoApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AiQALab.DemoApp.Controllers
+namespace AiQaLab.DemoApp.Controllers
 {
     public class AccountController : Controller
     {

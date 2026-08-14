@@ -1,4 +1,4 @@
-﻿using AiQALab.DemoApp.Services;
+﻿using AiQaLab.DemoApp.Services;
 using FluentAssertions;
 
 namespace AiQaLab.Tests.Authentication

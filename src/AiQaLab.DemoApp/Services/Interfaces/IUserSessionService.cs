@@ -1,6 +1,6 @@
-﻿using AiQALab.Core.Models;
+﻿using AiQaLab.Core.Models;
 
-namespace AiQALab.DemoApp.Services.Interfaces
+namespace AiQaLab.DemoApp.Services.Interfaces
 {
     public interface IUserSessionService
     {

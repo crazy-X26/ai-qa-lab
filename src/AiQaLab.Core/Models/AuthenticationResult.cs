@@ -1,4 +1,4 @@
-﻿namespace AiQALab.Core.Models
+﻿namespace AiQaLab.Core.Models
 {
     public class AuthenticationResult
     {

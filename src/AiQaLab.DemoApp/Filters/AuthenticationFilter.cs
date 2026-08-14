@@ -1,8 +1,8 @@
-﻿using AiQALab.DemoApp.Services.Interfaces;
+﻿using AiQaLab.DemoApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AiQALab.DemoApp.Filters
+namespace AiQaLab.DemoApp.Filters
 {
     public class AuthenticationFilter : IAsyncActionFilter
     {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.AI", "src\AiQaLab.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Core", "src\AiQaLab.Core\AiQaLab.Core.csproj", "{C1767B64-FD3F-8AAB-5376-6A8CD4D99A21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQALab.DemoApp", "src\AiQaLab.DemoApp\AiQALab.DemoApp.csproj", "{69917431-BE92-FB6C-674E-67B04CC6B7A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.DemoApp", "src\AiQaLab.DemoApp\AiQaLab.DemoApp.csproj", "{69917431-BE92-FB6C-674E-67B04CC6B7A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject

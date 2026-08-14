@@ -1,4 +1,4 @@
-namespace AiQALab.DemoApp.Models
+namespace AiQaLab.DemoApp.Models
 {
     public class ErrorViewModel
     {

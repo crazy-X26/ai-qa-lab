@@ -1,7 +1,7 @@
-using AiQALab.DemoApp.Services;
-using AiQALab.DemoApp.Services.Interfaces;
+using AiQaLab.DemoApp.Services;
+using AiQaLab.DemoApp.Services.Interfaces;
 
-namespace AiQALab.DemoApp
+namespace AiQaLab.DemoApp
 {
     public class Program
     {
