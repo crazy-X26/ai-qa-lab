@@ -1,7 +1,7 @@
 ﻿using AiQaLab.DemoApp.Services;
 using FluentAssertions;
 
-namespace AiQaLab.Tests.Authentication
+namespace AiQaLab.Tests.Unit.Authentication
 {
     public class AuthenticationServiceTests
     {
