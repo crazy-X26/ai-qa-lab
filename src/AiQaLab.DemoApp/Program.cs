@@ -1,14 +1,33 @@
-namespace AiQALab.DemoApp
+using AiQaLab.DemoApp.Services;
+using AiQaLab.DemoApp.Services.Interfaces;
+
+namespace AiQaLab.DemoApp
 {
-    public class Program
+    public partial class Program
     {
+        
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var app = CreateApp(args);
+
+            app.Run();
+        }
+
+        public static WebApplication CreateApp(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            {
+                Args = args,
+                ApplicationName = typeof(Program).Assembly.GetName().Name
+            });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSession();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +41,8 @@ namespace AiQALab.DemoApp
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapStaticAssets();
@@ -30,7 +51,7 @@ namespace AiQALab.DemoApp
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
-            app.Run();
+            return app;
         }
     }
 }

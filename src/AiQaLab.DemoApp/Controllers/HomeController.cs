@@ -1,9 +1,11 @@
-using AiQALab.DemoApp.Models;
+using AiQaLab.DemoApp.Filters;
+using AiQaLab.DemoApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AiQALab.DemoApp.Controllers
+namespace AiQaLab.DemoApp.Controllers
 {
+    [RequireAuthentication]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

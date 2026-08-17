@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37516.0
@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.AI", "src\AiQaLab.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Core", "src\AiQaLab.Core\AiQaLab.Core.csproj", "{C1767B64-FD3F-8AAB-5376-6A8CD4D99A21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQALab.DemoApp", "src\AiQaLab.DemoApp\AiQALab.DemoApp.csproj", "{69917431-BE92-FB6C-674E-67B04CC6B7A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.DemoApp", "src\AiQaLab.DemoApp\AiQaLab.DemoApp.csproj", "{69917431-BE92-FB6C-674E-67B04CC6B7A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Playwright", "tests\AiQaLab.Playwright\AiQaLab.Playwright.csproj", "{B51EE832-AA8D-17D3-F64F-25A23343C3A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.PlaywrightTests", "tests\AiQaLab.PlaywrightTests\AiQaLab.PlaywrightTests.csproj", "{B51EE832-AA8D-17D3-F64F-25A23343C3A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Tests", "tests\AiQaLab.Tests\AiQaLab.Tests.csproj", "{C4820084-2CBB-0D35-2A7A-07501739E5DD}"
 EndProject
