@@ -3,12 +3,23 @@ using AiQaLab.DemoApp.Services.Interfaces;
 
 namespace AiQaLab.DemoApp
 {
-    public class Program
+    public partial class Program
     {
         
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var app = CreateApp(args);
+
+            app.Run();
+        }
+
+        public static WebApplication CreateApp(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            {
+                Args = args,
+                ApplicationName = typeof(Program).Assembly.GetName().Name
+            });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -16,7 +27,7 @@ namespace AiQaLab.DemoApp
             builder.Services.AddSession();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -40,7 +51,7 @@ namespace AiQaLab.DemoApp
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
-            app.Run();
+            return app;
         }
     }
 }
