@@ -6,6 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup>
+  	<TargetFramework>net9.0</TargetFramework>
+  	<Nullable>enable</Nullable>
+  	<ImplicitUsings>enable</ImplicitUsings>
+  	<UserSecretsId>AiQaLab-DemoApp</UserSecretsId>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\AiQaLab.AI\AiQaLab.AI.csproj" />
     <ProjectReference Include="..\AiQaLab.Core\AiQaLab.Core.csproj" />

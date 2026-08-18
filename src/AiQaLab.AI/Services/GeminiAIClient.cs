@@ -16,7 +16,7 @@ namespace AiQaLab.AI.Services
         public async Task<string> SendAsync(string prompt, CancellationToken cancellationToken = default)
         {
             var response = await _client.Models.GenerateContentAsync(
-                model: "gemini-2.5-flash",
+                model: "gemini-3.1-flash-lite",
                 contents: prompt,
                 cancellationToken: cancellationToken
             );
