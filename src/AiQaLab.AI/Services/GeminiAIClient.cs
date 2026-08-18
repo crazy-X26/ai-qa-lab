@@ -7,7 +7,7 @@ namespace AiQaLab.AI.Services
     public class GeminiAIClient : IAIClient
     {
         private readonly Client _client;
-
+        
         public GeminiAIClient(string apiKey)
         {
             _client = new Client(apiKey: apiKey);
@@ -18,6 +18,24 @@ namespace AiQaLab.AI.Services
             var response = await _client.Models.GenerateContentAsync(
                 model: "gemini-3.1-flash-lite",
                 contents: prompt,
+                cancellationToken: cancellationToken
+            );
+
+            return response.Text ?? string.Empty;
+        }
+
+        public async Task<string> SendStructuredAsync(string prompt, Schema responseSchema, CancellationToken cancellationToken = default)
+        {
+            var config = new GenerateContentConfig
+            {
+                ResponseMimeType = "application/json",
+                ResponseSchema = responseSchema
+            };
+
+            var response = await _client.Models.GenerateContentAsync(
+                model: "gemini-3.1-flash-lite",
+                contents: prompt,
+                config: config,
                 cancellationToken: cancellationToken
             );
 
