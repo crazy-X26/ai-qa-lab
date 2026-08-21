@@ -27,7 +27,7 @@ namespace AiQaLab.DemoApp
             builder.Services.AddSession();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-            
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
