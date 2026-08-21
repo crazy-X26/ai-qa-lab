@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{96C74BF9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Tool", "src\AiQaLab.Tool\AiQaLab.Tool.csproj", "{BA45A5A2-7CA5-4421-9CC7-B8876EB418C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Cli", "src\AiQaLab-Cli\AiQaLab.Cli.csproj", "{122E5A20-29C0-43D0-B809-79C3E0ACA8FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiQaLab.Cli", "src\AiQaLab.Cli\AiQaLab.Cli.csproj", "{122E5A20-29C0-43D0-B809-79C3E0ACA8FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
