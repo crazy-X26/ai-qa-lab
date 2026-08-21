@@ -8,7 +8,7 @@ namespace AiQaLab.AI.Services
     public class TestAnalysisService : ITestAnalysisService
     {
         private readonly IAIClient _aiClient;
-        private readonly ITestAnalysisPromptBuilder _promptBuilder = new TestAnalysisPromptBuilder();
+        private readonly ITestAnalysisPromptBuilder _promptBuilder;
 
         public TestAnalysisService(IAIClient aiClient, ITestAnalysisPromptBuilder promptBuilder)
         {
