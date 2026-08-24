@@ -1,7 +1,8 @@
-﻿using AiQaLab.AI.Services.Interfaces;
+﻿using AiQaLab.AI.Services;
+using AiQaLab.AI.Services.Interfaces;
 using System.CommandLine;
 
-namespace AiQaLab_Cli.Commands
+namespace AiQaLab.Cli.Commands
 {
     public class AnalyzeRequirementCommand
     {
@@ -12,7 +13,7 @@ namespace AiQaLab_Cli.Commands
             _analysisService = analysisService;
         }
 
-        public Command Create()
+        public Command Build()
         {
             var fileArgument = new Argument<FileInfo>("file")
             {
@@ -31,30 +32,40 @@ namespace AiQaLab_Cli.Commands
 
                 if (file == null)
                 {
-                    Console.Error.WriteLine($"Requirement file is required.");
-                    return;
+                    Console.Error.WriteLine("Requirement file is required.");
+                    return CliExitCodes.InvalidInput;
                 }
 
                 if (!file.Exists)
                 {
                     Console.Error.WriteLine($"Requirement not found: {file.FullName}");
-                    return;
+                    return CliExitCodes.InvalidInput;
                 }
 
                 var requirement = await File.ReadAllTextAsync(file.FullName);
 
-                var result = await _analysisService.AnalyzeAsync(requirement);
-
-                foreach (var suggestion in result.Suggestions)
+                try
                 {
-                    Console.WriteLine($"[{suggestion.TestLevel}]");
-                    Console.WriteLine(suggestion.Description);
-                    Console.WriteLine($"Reason: {suggestion.Reason}");
-                    Console.WriteLine();
+                    var result = await _analysisService.AnalyzeAsync(requirement);
+
+                    foreach (var suggestion in result.Suggestions)
+                    {
+                        Console.WriteLine($"[{suggestion.TestLevel}]");
+                        Console.WriteLine(suggestion.Description);
+                        Console.WriteLine($"Reason: {suggestion.Reason}");
+                        Console.WriteLine();
+                    }
+                    return CliExitCodes.Success;
+                }
+                catch (TestAnalysisException ex)
+                {
+                    Console.Error.WriteLine($"AI analysis failed: {ex.Message}");
+                    return CliExitCodes.GeneralError;
                 }
             });
 
             return command;
+            
         }
     }
 }

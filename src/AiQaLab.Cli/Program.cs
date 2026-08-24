@@ -1,6 +1,6 @@
 ﻿using AiQaLab.AI.Services;
 using AiQaLab.AI.Services.Interfaces;
-using AiQaLab_Cli.Commands;
+using AiQaLab.Cli.Commands;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,13 +26,12 @@ builder.Services.AddSingleton<IAIClient>(serviceProvider =>
 
 builder.Services.AddSingleton<ITestAnalysisPromptBuilder, TestAnalysisPromptBuilder>();
 builder.Services.AddSingleton<ITestAnalysisService, TestAnalysisService>();
+builder.Services.AddTransient<AnalyzeRequirementCommand>();
 
 using var host = builder.Build();
-
-var testAnalysisService = host.Services.GetRequiredService<ITestAnalysisService>();
-var analyzeRequirementCommand = new AnalyzeRequirementCommand(testAnalysisService);
+var analyzeRequirementCommand = host.Services.GetRequiredService<AnalyzeRequirementCommand>();
 
 var rootCommand = new RootCommand("AiQaLab - AI-powered QA tools");
-rootCommand.Add(analyzeRequirementCommand.Create());
+rootCommand.Add(analyzeRequirementCommand.Build());
 
 return await rootCommand.Parse(args).InvokeAsync();
