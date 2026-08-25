@@ -9,6 +9,14 @@ using System.CommandLine;
 var builder = Host.CreateApplicationBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
 
+using var cancellationTokenSource = new CancellationTokenSource();
+
+Console.CancelKeyPress += (_, EventArgs) =>
+{
+    EventArgs.Cancel = true;
+    cancellationTokenSource.Cancel();
+};
+
 builder.Services.AddSingleton<IAIClient>(serviceProvider =>
 {
     var configuration = serviceProvider.GetRequiredService<IConfiguration>();

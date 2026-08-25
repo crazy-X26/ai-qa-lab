@@ -1,5 +1,6 @@
 ﻿using AiQaLab.AI.Services;
 using AiQaLab.AI.Services.Interfaces;
+using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 
 namespace AiQaLab.Cli.Commands
@@ -26,7 +27,7 @@ namespace AiQaLab.Cli.Commands
 
             command.Add(fileArgument);
 
-            command.SetAction(async parseResult =>
+            command.SetAction(async (parseResult, cancellationToken) =>
             {
                 var file = parseResult.GetValue(fileArgument);
 
@@ -46,7 +47,7 @@ namespace AiQaLab.Cli.Commands
 
                 try
                 {
-                    var result = await _analysisService.AnalyzeAsync(requirement);
+                    var result = await _analysisService.AnalyzeAsync(requirement, cancellationToken);
 
                     foreach (var suggestion in result.Suggestions)
                     {
@@ -56,6 +57,11 @@ namespace AiQaLab.Cli.Commands
                         Console.WriteLine();
                     }
                     return CliExitCodes.Success;
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.Error.WriteLine("Analysis cancelled.");
+                    return CliExitCodes.Cancelled;
                 }
                 catch (TestAnalysisException ex)
                 {
