@@ -1,0 +1,2 @@
+The user can log in with a valid username and password.
+If the credentials are invalid, an appropriate error message is displayed.
