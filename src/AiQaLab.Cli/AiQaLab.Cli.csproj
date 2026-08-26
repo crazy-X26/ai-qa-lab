@@ -17,6 +17,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<UserSecretsId>AiQaLab.CLI</UserSecretsId>
+
+	<PublishSingleFile>true</PublishSingleFile>
+	<SelfContained>false</SelfContained>
   </PropertyGroup>
 
 </Project>
