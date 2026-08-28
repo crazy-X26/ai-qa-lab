@@ -48,7 +48,7 @@ namespace AiQaLab.Tests.Integration.AI
                 "the Gemini API key must be configured for this integration test");
 
             var client = new GeminiAIClient(apiKey!);
-            var schema = TestAnalysisSchema.Create();
+            var schema = TestAnalysisSchema.CreateSchema();
 
             // Act
             var response = await client.SendStructuredAsync(

@@ -1,49 +1,49 @@
-﻿using Google.GenAI.Types;
+﻿using System.Text.Json.Nodes;
 
 namespace AiQaLab.AI.Schemas
 {
     public static class TestAnalysisSchema
     {
-        public static Schema Create()
+        public static JsonNode CreateSchema()
         {
-            var suggestionSchema = new Schema
+            return JsonNode.Parse("""
             {
-                Type = Google.GenAI.Types.Type.Object,
-                Properties = new Dictionary<string, Schema>
-                {
-                    ["description"] = new Schema
-                    {
-                        Type = Google.GenAI.Types.Type.String
-                    },
-                    ["testLevel"] = new Schema
-                    {
-                        Type = Google.GenAI.Types.Type.String,
-                        Enum = ["Unit", "Integration", "EndToEnd"]
-                    },
-                    ["reason"] = new Schema
-                    {
-                        Type = Google.GenAI.Types.Type.String
+                "type": "object",
+                "properties": {
+                    "suggestions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "testLevel": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Unit",
+                                        "Integration",
+                                        "EndToEnd"
+                                    ]
+                                },
+                                "reason": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "description",
+                                "testLevel",
+                                "reason"
+                            ]
+                        },
+                        "minItems": 1
                     }
                 },
-                Required = ["description", "testLevel", "reason"],
-                PropertyOrdering = ["description", "testLevel", "reason"]
-            };
-
-            return new Schema
-            {
-                Type = Google.GenAI.Types.Type.Object,
-                Properties = new Dictionary<string, Schema>
-                {
-                    ["suggestions"] = new Schema
-                    {
-                        Type = Google.GenAI.Types.Type.Array,
-                        Items = suggestionSchema,
-                        MinItems = 1
-                    }
-                },
-                Required = ["suggestions"],
-                PropertyOrdering = ["suggestions"]
-            };
+                "required": [
+                    "suggestions"
+                ]
+            }
+            """)!;
         }
     }
 }

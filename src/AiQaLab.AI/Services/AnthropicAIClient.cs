@@ -1,6 +1,6 @@
 ﻿using AiQaLab.AI.Services.Interfaces;
 using Anthropic;
-using Google.GenAI.Types;
+using System.Text.Json.Nodes;
 
 namespace AiQaLab.AI.Services
 {
@@ -19,7 +19,7 @@ namespace AiQaLab.AI.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> SendStructuredAsync(string prompt, Schema responseSchema, CancellationToken cancellationToken = default)
+        public Task<string> SendStructuredAsync(string prompt, JsonNode responseSchema, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

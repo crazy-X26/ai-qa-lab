@@ -1,6 +1,6 @@
-﻿using AiQaLab.AI.Services.Interfaces;
-using Google.GenAI;
+﻿using Google.GenAI;
 using Google.GenAI.Types;
+using System.Text.Json.Nodes;
 
 namespace AiQaLab.AI.Services
 {
@@ -24,12 +24,12 @@ namespace AiQaLab.AI.Services
             return response.Text ?? string.Empty;
         }
 
-        public async Task<string> SendStructuredAsync(string prompt, Schema responseSchema, CancellationToken cancellationToken = default)
+        public async Task<string> SendStructuredAsync(string prompt, JsonNode responseSchema, CancellationToken cancellationToken = default)
         {
             var config = new GenerateContentConfig
             {
                 ResponseMimeType = "application/json",
-                ResponseSchema = responseSchema
+                ResponseJsonSchema = responseSchema
             };
 
             var response = await _client.Models.GenerateContentAsync(
