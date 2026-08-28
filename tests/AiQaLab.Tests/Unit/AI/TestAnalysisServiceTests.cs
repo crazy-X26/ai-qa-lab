@@ -5,6 +5,7 @@ using FluentAssertions;
 using Google.GenAI.Types;
 using Moq;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace AiQaLab.Tests.Unit.AI
 {
@@ -35,7 +36,7 @@ namespace AiQaLab.Tests.Unit.AI
             _mockAIClient
             .Setup(x => x.SendStructuredAsync(
                 It.IsAny<string>(),
-                It.IsAny<Schema>(),
+                It.IsAny<JsonNode>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(jsonResponse);
 
@@ -79,7 +80,7 @@ namespace AiQaLab.Tests.Unit.AI
             _mockAIClient
             .Setup(x => x.SendStructuredAsync(
                 It.IsAny<string>(),
-                It.IsAny<Schema>(),
+                It.IsAny<JsonNode>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(jsonResponse);
 
@@ -104,7 +105,7 @@ namespace AiQaLab.Tests.Unit.AI
 
             _mockAIClient.Verify(x => x.SendStructuredAsync(
                 expectedPrompt,
-                It.IsAny<Schema>(),
+                It.IsAny<JsonNode>(),
                 It.IsAny<CancellationToken>()),
             Times.Once);
         }
@@ -122,7 +123,7 @@ namespace AiQaLab.Tests.Unit.AI
             _mockAIClient
                 .Setup(x => x.SendStructuredAsync(
                     It.IsAny<string>(),
-                    It.IsAny<Schema>(),
+                    It.IsAny<JsonNode>(),
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync("This is not valid JSON");
 
@@ -151,7 +152,7 @@ namespace AiQaLab.Tests.Unit.AI
             _mockAIClient
                 .Setup(x => x.SendStructuredAsync(
                     It.IsAny<string>(),
-                    It.IsAny<Schema>(),
+                    It.IsAny<JsonNode>(),
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(jsonResponse);
 
@@ -178,7 +179,7 @@ namespace AiQaLab.Tests.Unit.AI
             _mockAIClient
                 .Setup(x => x.SendStructuredAsync(
                     It.IsAny<string>(),
-                    It.IsAny<Schema>(),
+                    It.IsAny<JsonNode>(),
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync("null");
 

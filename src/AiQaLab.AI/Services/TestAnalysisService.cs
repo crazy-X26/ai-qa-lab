@@ -24,7 +24,7 @@ namespace AiQaLab.AI.Services
             {
                 var response = await _aiClient.SendStructuredAsync(
                     prompt,
-                    TestAnalysisSchema.Create(),
+                    TestAnalysisSchema.CreateSchema(),
                     cancellationToken);
 
                 var result = JsonSerializer.Deserialize<TestAnalysisResult>(

@@ -1,16 +1,13 @@
-﻿using Google.GenAI.Types;
+﻿using System.Text.Json.Nodes;
 
-namespace AiQaLab.AI.Services.Interfaces
+public interface IAIClient
 {
-    public interface IAIClient
-    {
-        Task<string> SendAsync(
-            string prompt,
-            CancellationToken cancellationToken = default);
+    Task<string> SendAsync(
+        string prompt,
+        CancellationToken cancellationToken = default);
 
-        Task<string> SendStructuredAsync(
-            string prompt,
-            Schema responseSchema,
-            CancellationToken cancellationToken = default);
-    }
+    Task<string> SendStructuredAsync(
+        string prompt,
+        JsonNode responseSchema,
+        CancellationToken cancellationToken = default);
 }

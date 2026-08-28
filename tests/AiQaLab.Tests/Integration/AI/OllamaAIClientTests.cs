@@ -1,53 +1,26 @@
-﻿using AiQaLab.AI.Services;
+﻿using AiQaLab.AI.Models;
 using AiQaLab.AI.Schemas;
-using AiQaLab.AI.Models;
+using AiQaLab.AI.Services;
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 namespace AiQaLab.Tests.Integration.AI
 {
-    public class GeminiAIClientTests
+    public class OllamaAIClientTests
     {
-        [Trait("Category", "AI")]
-        [Fact]
-        public async Task SendAsync_WithValidPrompt_ReturnsResponse()
-        {
-            // Arrange
-            var configuration = new ConfigurationBuilder()
-                .AddUserSecrets<GeminiAIClientTests>()
-                .Build();
-
-            var apiKey = configuration["AI:Gemini:ApiKey"];
-
-            apiKey.Should().NotBeNullOrWhiteSpace(
-                "the Gemini API key must be configured for this integration test");
-
-            var client = new GeminiAIClient(apiKey!);
-
-            // Act
-            var response = await client.SendAsync(
-                "Answer with exactly one short sentence: What is a unit test?");
-
-            // Assert
-            response.Should().NotBeNullOrWhiteSpace();
-        }
-
         [Trait("Category", "AI")]
         [Fact]
         public async Task SendStructuredAsync_WithTestRequirement_ReturnsValidTestAnalysisResult()
         {
             // Arrange
-            var configuration = new ConfigurationBuilder()
-                .AddUserSecrets<GeminiAIClientTests>()
-                .Build();
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:11434"),
+                Timeout = TimeSpan.FromMinutes(3)
+            };
 
-            var apiKey = configuration["AI:Gemini:ApiKey"];
+            var client = new OllamaAIClient(httpClient, "qwen3:4b");
 
-            apiKey.Should().NotBeNullOrWhiteSpace(
-                "the Gemini API key must be configured for this integration test");
-
-            var client = new GeminiAIClient(apiKey!);
             var schema = TestAnalysisSchema.CreateSchema();
 
             // Act
@@ -61,7 +34,7 @@ namespace AiQaLab.Tests.Integration.AI
                 Suggest appropriate tests.
                 """,
                 schema);
-            
+
             // Assert
             response.Should().NotBeNullOrWhiteSpace();
 
@@ -71,7 +44,9 @@ namespace AiQaLab.Tests.Integration.AI
                 {
                     PropertyNameCaseInsensitive = true
                 });
+
             result.Should().NotBeNull("the response should be a valid JSON object");
+
             result!.Suggestions.Should().NotBeNullOrEmpty("the response should contain test case suggestions");
 
             foreach (var suggestion in result.Suggestions)
