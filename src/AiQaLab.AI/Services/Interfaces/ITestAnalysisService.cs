@@ -4,6 +4,6 @@ namespace AiQaLab.AI.Services.Interfaces
 {
     public interface ITestAnalysisService
     {
-        Task<TestAnalysisResult> AnalyzeAsync(string requirement, CancellationToken cancellationToken = default);
+        Task<TestAnalysisResult> AnalyzeAsync(TestAnalysisRequest request, CancellationToken cancellationToken = default);
     }
 }
