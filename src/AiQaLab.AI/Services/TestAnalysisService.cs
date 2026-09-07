@@ -16,9 +16,9 @@ namespace AiQaLab.AI.Services
             _promptBuilder = promptBuilder;
         }
 
-        public async Task<TestAnalysisResult> AnalyzeAsync(string requirement, CancellationToken cancellationToken = default)
+        public async Task<TestAnalysisResult> AnalyzeAsync(TestAnalysisRequest request, CancellationToken cancellationToken = default)
         {
-            var prompt = _promptBuilder.Build(requirement);
+            var prompt = _promptBuilder.Build(request);
 
             try
             {

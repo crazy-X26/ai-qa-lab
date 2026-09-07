@@ -18,7 +18,7 @@ namespace AiQaLab.Tests.Unit.AI
         public async Task AnalyzeAsync_ReturnsTestSuggestions()
         {
             // Arrange
-            var requirement = "Users can log in with valid credentials.";
+            var request = new TestAnalysisRequest { Requirement = "Users can log in with valid credentials." };
 
             var jsonResponse = JsonSerializer.Serialize(new TestAnalysisResult
             {
@@ -30,7 +30,7 @@ namespace AiQaLab.Tests.Unit.AI
             });
 
             _mockPromptBuilder
-            .Setup(x => x.Build(requirement))
+            .Setup(x => x.Build(request))
             .Returns("Prompt");
 
             _mockAIClient
@@ -44,7 +44,7 @@ namespace AiQaLab.Tests.Unit.AI
 
 
             // Act
-            var result = await testAnalysisService.AnalyzeAsync(requirement);
+            var result = await testAnalysisService.AnalyzeAsync(request);
 
             // Assert
             result.Should().NotBeNull();
@@ -55,7 +55,7 @@ namespace AiQaLab.Tests.Unit.AI
         public async Task AnalyzeAsync_ReturnsExpectedTestSuggestion()
         {
             // Arrange
-            var requirement = "Users can log in with valid credentials.";
+            var request = new TestAnalysisRequest { Requirement = "Users can log in with valid credentials." };
 
             var expectedResult = new TestAnalysisResult
             {
@@ -74,7 +74,7 @@ namespace AiQaLab.Tests.Unit.AI
             var expectedPrompt = "Generated test analysis prompt";
 
             _mockPromptBuilder
-            .Setup(x => x.Build(requirement))
+            .Setup(x => x.Build(request))
             .Returns(expectedPrompt);
 
             _mockAIClient
@@ -87,7 +87,7 @@ namespace AiQaLab.Tests.Unit.AI
             var testAnalysisService = new TestAnalysisService(_mockAIClient.Object, _mockPromptBuilder.Object);
 
             // Act
-            var result = await testAnalysisService.AnalyzeAsync(requirement);
+            var result = await testAnalysisService.AnalyzeAsync(request);
 
             // Assert
             result.Should().NotBeNull();
@@ -101,7 +101,7 @@ namespace AiQaLab.Tests.Unit.AI
 
             suggestion.Reason.Should().Be("Verifies the complete login flow.");
 
-            _mockPromptBuilder.Verify(x => x.Build(requirement), Times.Once);
+            _mockPromptBuilder.Verify(x => x.Build(request), Times.Once);
 
             _mockAIClient.Verify(x => x.SendStructuredAsync(
                 expectedPrompt,
@@ -114,10 +114,10 @@ namespace AiQaLab.Tests.Unit.AI
         public async Task AnalyzeAsync_WithInvalidAIResponse_ThrowsTestAnalysisException()
         {
             // Arrange
-            var requirement = "Users can log in with valid credentials.";
+            var request = new TestAnalysisRequest { Requirement = "Users can log in with valid credentials." };
 
             _mockPromptBuilder
-            .Setup(x => x.Build(requirement))
+            .Setup(x => x.Build(request))
 
             .Returns("Prompt");
             _mockAIClient
@@ -130,7 +130,7 @@ namespace AiQaLab.Tests.Unit.AI
             var service = new TestAnalysisService(_mockAIClient.Object, _mockPromptBuilder.Object);
 
             // Act
-            var act = () => service.AnalyzeAsync(requirement);
+            var act = () => service.AnalyzeAsync(request);
 
             // Assert
             await act.Should()
@@ -142,12 +142,12 @@ namespace AiQaLab.Tests.Unit.AI
         public async Task AnalyzeAsync_WithNoSuggestions_ThrowsTestAnalysisException()
         {
             // Arrange
-            var requirement = "Users can log in with valid credentials.";
+            var request = new TestAnalysisRequest { Requirement = "Users can log in with valid credentials." };
 
             var jsonResponse = JsonSerializer.Serialize(new TestAnalysisResult { Suggestions = [] });
 
             _mockPromptBuilder
-            .Setup(x => x.Build(requirement))
+            .Setup(x => x.Build(request))
             .Returns("Prompt");
             _mockAIClient
                 .Setup(x => x.SendStructuredAsync(
@@ -159,7 +159,7 @@ namespace AiQaLab.Tests.Unit.AI
             var service = new TestAnalysisService(_mockAIClient.Object, _mockPromptBuilder.Object);
 
             // Act
-            var act = () => service.AnalyzeAsync(requirement);
+            var act = () => service.AnalyzeAsync(request);
 
             // Assert
             await act.Should()
@@ -171,10 +171,10 @@ namespace AiQaLab.Tests.Unit.AI
         public async Task AnalyzeAsync_WithEmptyAIResponse_ThrowsTestAnalysisException()
         {
             // Arrange
-            var requirement = "Users can log in with valid credentials.";
+            var request = new TestAnalysisRequest { Requirement = "Users can log in with valid credentials." };
 
             _mockPromptBuilder
-            .Setup(x => x.Build(requirement))
+            .Setup(x => x.Build(request))
             .Returns("Prompt");
             _mockAIClient
                 .Setup(x => x.SendStructuredAsync(
@@ -186,7 +186,7 @@ namespace AiQaLab.Tests.Unit.AI
             var service = new TestAnalysisService(_mockAIClient.Object, _mockPromptBuilder.Object);
 
             // Act
-            var act = () => service.AnalyzeAsync(requirement);
+            var act = () => service.AnalyzeAsync(request);
 
             // Assert
             await act.Should()

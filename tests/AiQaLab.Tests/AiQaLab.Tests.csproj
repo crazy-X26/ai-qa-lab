@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AiQaLab.AI\AiQaLab.AI.csproj" />
+	<ProjectReference Include="..\..\src\AiQaLab.Cli\AiQaLab.Cli.csproj" />
     <ProjectReference Include="..\..\src\AiQaLab.Core\AiQaLab.Core.csproj" />
     <ProjectReference Include="..\..\src\AiQaLab.DemoApp\AiQaLab.DemoApp.csproj" />
     <ProjectReference Include="..\..\src\AiQaLab.Tool\AiQaLab.Tool.csproj" />
